@@ -1,4 +1,4 @@
-package com.pluralsight.dealershipmanager;
+package com.pluralsight.dealershipmanager.model;
 
 import java.math.BigDecimal;
 //Hold Information about a specific vehicle
