@@ -10,8 +10,8 @@ public class SalesContract extends Contract{
 
     public SalesContract(LocalDate contractDate, Vehicle vehicleSold, String customerEmail, String customerName, BigDecimal salesTaxAmount, BigDecimal recordingFee, boolean isFinanced) {
         super(contractDate, vehicleSold, customerEmail, customerName);
-        this.salesTaxAmount = salesTaxAmount;
-        this.recordingFee = recordingFee;
+        this.salesTaxAmount = new BigDecimal("0.05");
+        this.recordingFee = new BigDecimal("100");;
         this.isFinanced = isFinanced;
     }
 
@@ -40,10 +40,21 @@ public class SalesContract extends Contract{
     }
 
     public BigDecimal getProcessingFee(){
-        return null;
+//        if(getTotalPrice().compareTo(new BigDecimal("10000")) < 0){
+//            return new BigDecimal("295");
+//        }else{
+//            return new BigDecimal("495");
+//        }
+
+        if(getVehicleSold().getPrice().compareTo(new BigDecimal("10000")) < 0){
+            return new BigDecimal("295");
+        }else{
+            return new BigDecimal("495");
+        }
     }
 
     public BigDecimal getTotalPrice(){
+        getVehicleSold().getPrice();
         return null;
     }
 
