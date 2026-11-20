@@ -6,13 +6,14 @@ import java.time.LocalDate;
 import static com.pluralsight.dealershipmanager.model.LoanCalculator.calculateMonthlyPayment;
 
 public class SalesContract extends Contract{
+    private final BigDecimal PRICE_THRESHOLD = new BigDecimal("10000");
     private BigDecimal salesTaxAmount;
     private BigDecimal recordingFee;
     private boolean isFinanced;
 
-    public SalesContract(LocalDate contractDate, Vehicle vehicleSold, String customerEmail, String customerName, BigDecimal salesTaxAmount, BigDecimal recordingFee, boolean isFinanced) {
+    public SalesContract(LocalDate contractDate, Vehicle vehicleSold, String customerEmail, String customerName, boolean isFinanced) {
         super(contractDate, vehicleSold, customerEmail, customerName);
-        this.salesTaxAmount = getVehicleSold().getPrice().multiply(new BigDecimal("0.05"));
+        this.salesTaxAmount = getVehicleSold().getPrice().multiply(new BigDecimal(".05"));
         this.recordingFee = new BigDecimal("100");
         this.isFinanced = isFinanced;
     }
@@ -42,13 +43,8 @@ public class SalesContract extends Contract{
     }
 
     public BigDecimal getProcessingFee(){
-//        if(getTotalPrice().compareTo(new BigDecimal("10000")) < 0){
-//            return new BigDecimal("295");
-//        }else{
-//            return new BigDecimal("495");
-//        }
 
-        if(getVehicleSold().getPrice().compareTo(new BigDecimal("10000")) < 0){
+        if(getVehicleSold().getPrice().compareTo(PRICE_THRESHOLD) < 0){
             return new BigDecimal("295");
         }else{
             return new BigDecimal("495");
@@ -64,7 +60,7 @@ public class SalesContract extends Contract{
         if(!isFinanced){
             return BigDecimal.ZERO;
         }else{
-            boolean isAbovePriceThreshold = getVehicleSold().getPrice().compareTo(new BigDecimal("10000")) >= 0;
+            boolean isAbovePriceThreshold = getVehicleSold().getPrice().compareTo(PRICE_THRESHOLD) >= 0;
             if(isAbovePriceThreshold){
                 return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal(".0425"), 48);
             }else{

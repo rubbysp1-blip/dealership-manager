@@ -9,8 +9,8 @@ public class LeaseContract extends Contract{
 
     public LeaseContract(LocalDate contractDate, Vehicle vehicleSold, String customerEmail, String customerName, BigDecimal expectedEndingValue, BigDecimal leaseFee) {
         super(contractDate, vehicleSold, customerEmail, customerName);
-        this.expectedEndingValue = expectedEndingValue;
-        this.leaseFee = leaseFee;
+        this.expectedEndingValue = getVehicleSold().getPrice().multiply(new BigDecimal(".50"));
+        this.leaseFee = new BigDecimal(".07");
     }
 
     public BigDecimal getExpectedEndingValue() {
@@ -30,8 +30,7 @@ public class LeaseContract extends Contract{
     }
     @Override
     public BigDecimal getTotalPrice(){
-
-        return null;
+        return getExpectedEndingValue().add(getLeaseFee());
     }
     @Override
     public BigDecimal getMonthlyPayment(){
