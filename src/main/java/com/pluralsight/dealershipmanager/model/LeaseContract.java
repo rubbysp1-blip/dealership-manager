@@ -28,11 +28,12 @@ public class LeaseContract extends Contract{
     public void setLeaseFee(BigDecimal leaseFee) {
         this.leaseFee = leaseFee;
     }
-
+    @Override
     public BigDecimal getTotalPrice(){
+
         return null;
     }
-
+    @Override
     public BigDecimal getMonthlyPayment(){
         return null;
     }
