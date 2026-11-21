@@ -1,6 +1,7 @@
 package com.pluralsight.dealershipmanager.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 import static com.pluralsight.dealershipmanager.model.LoanCalculator.calculateMonthlyPayment;
@@ -53,7 +54,7 @@ public class SalesContract extends Contract{
     @Override
     public BigDecimal getTotalPrice(){
 
-        return getVehicleSold().getPrice().add(getSalesTaxAmount()).add(getRecordingFee()).add(getProcessingFee());
+        return getVehicleSold().getPrice().add(getSalesTaxAmount()).add(getRecordingFee()).add(getProcessingFee()).setScale(2, RoundingMode.HALF_DOWN);
     }
     @Override
     public BigDecimal getMonthlyPayment(){
