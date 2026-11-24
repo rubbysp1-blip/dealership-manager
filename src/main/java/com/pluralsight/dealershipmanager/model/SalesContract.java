@@ -63,9 +63,10 @@ public class SalesContract extends Contract{
         }else{
             boolean isAbovePriceThreshold = getVehicleSold().getPrice().compareTo(PRICE_THRESHOLD) >= 0;
             if(isAbovePriceThreshold){
-                return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal(".0425"), 48);
+                return calculateMonthlyPayment(getTotalPrice(), new BigDecimal("4.25"), 48);
+                //return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal(".0425"), 48);
             }else{
-                return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal(".0525"), 24);
+                return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal("5.25"), 24);
             }
         }
 
