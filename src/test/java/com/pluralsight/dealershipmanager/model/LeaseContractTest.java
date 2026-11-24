@@ -23,7 +23,7 @@ class LeaseContractTest {
     @Test
     public void getMonthlyPayment_shouldReturn_LeaseMonthlyPayment(){
         //arrange
-        Vehicle vehicleSold = new Vehicle(new BigDecimal(".15"), 123123, "Blue", "Car", "Skyline", "Nissan", 1990, 123456);
+        Vehicle vehicleSold = new Vehicle(new BigDecimal("31995.00"), 123123, "Blue", "Car", "Skyline", "Nissan", 1990, 123456);
         LeaseContract contract = new LeaseContract(LocalDate.now(), vehicleSold, "123@gmail.com", "Sandy");
         //act
         BigDecimal monthlyPayment = contract.getMonthlyPayment();
