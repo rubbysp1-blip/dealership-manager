@@ -33,11 +33,10 @@ public class LeaseContract extends Contract{
     }
     @Override
     public BigDecimal getTotalPrice(){
-        return getExpectedEndingValue().add(getLeaseFee()).setScale(2, RoundingMode.HALF_DOWN);
+        return getExpectedEndingValue().add(getLeaseFee()).setScale(2, RoundingMode.HALF_UP);
     }
     @Override
     public BigDecimal getMonthlyPayment(){
-        //return calculateMonthlyPayment(getVehicleSold().getPrice(), new BigDecimal("4.0"), 36);
         return calculateMonthlyPayment(getTotalPrice(), new BigDecimal("4.0"), 36);
     }
 }
